@@ -1,11 +1,12 @@
-// TODO: Include packages needed for this application
-const inquirer = require('inquirer');
-const fs = require('fs');
-const util = require('util');
+// Include packages needed for this application
+import { prompt } from 'inquirer';
+import { writeFile } from 'fs';
+import { promisify } from 'util';
+import { generateMarkdown } from './utils/generateMarkdown';
 
-// TODO: Create an array of questions for user input
-const questions = [(async () => {
-    const data = await prompt([
+// Array of questions for user input
+(async () => {
+    const questions = await prompt([
         {
             type: 'input',
             name: 'name',
@@ -63,13 +64,19 @@ const questions = [(async () => {
     ])
 }
 
-)];
+);
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+// Function to write README file
+async function writeToFile(fileName, data) {
+    const writeFileAsync = promisify(writeFile);
+
+    await writeFileAsync(fileName, data);
+}
 
 // TODO: Create a function to initialize app
-function init() { }
+function init() {
+
+}
 
 // Function call to initialize app
 init();
