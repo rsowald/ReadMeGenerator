@@ -1,12 +1,11 @@
-// Include packages needed for this application
-import { prompt } from 'inquirer';
-import { writeFile } from 'fs';
-import { promisify } from 'util';
-import { generateMarkdown } from './utils/generateMarkdown';
+const inquirer = require('inquirer');
+const fs = require('fs');
+const util = require('util');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // Array of questions for user input
-(async () => {
-    const questions = await prompt([
+askQuestions = async () => {
+    return await inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -61,21 +60,21 @@ import { generateMarkdown } from './utils/generateMarkdown';
             name: 'contributing',
             message: 'How should the user contribute to the repo?'
         }
-    ])
-}
-
-);
+    ]);
+};
 
 // Function to write README file
-async function writeToFile(fileName, data) {
-    const writeFileAsync = promisify(writeFile);
+writeToFile = async (fileName, data) => {
+    const writeFileAsync = util.promisify(fs.writeFile);
 
     await writeFileAsync(fileName, data);
-}
+};
 
-// TODO: Create a function to initialize app
+// Function to initialize app
 function init() {
-
+    const answers = askQuestions();
+    const markdown = generateMarkdown(answers);
+    writeToFile(fileName, markdown);
 }
 
 // Function call to initialize app
