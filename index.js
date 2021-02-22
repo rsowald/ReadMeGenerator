@@ -52,13 +52,18 @@ askQuestions = async () => {
         },
         {
             type: 'input',
-            name: 'using',
+            name: 'usage',
             message: 'What steps should the user take to use the repo?'
         },
         {
             type: 'input',
             name: 'contributing',
             message: 'How should the user contribute to the repo?'
+        },
+        {
+            type: 'input',
+            name: 'contributors',
+            message: 'Who has contributed to the repo?'
         }
     ]);
 };
@@ -71,11 +76,10 @@ writeToFile = async (fileName, data) => {
 };
 
 // Function to initialize app
-function init() {
-    const answers = askQuestions();
+init = async () => {
+    const answers = await askQuestions();
     const markdown = generateMarkdown(answers);
-    writeToFile(fileName, markdown);
-}
+    await writeToFile(fileName, markdown);
+};
 
-// Function call to initialize app
 init();
