@@ -1,34 +1,42 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-const badge = function renderLicenseBadge(data) {
-  if (data.license !== 'none') {
-    return `![License](https://img.shields.io/badge/License-${data.license}-green.svg "License Badge")`
+const generateBadge = function (license) {
+  if (license !== 'none') {
+    return `![License](https://img.shields.io/badge/license-${license.replace(/\s+/g, "")}-green.svg)`
   }
   else {
-    return ``
+    return ""
   }
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-const licenseSection = function renderLicenseSection(data) {
-  if (data.license !== 'none') {
-    return `[${data.license} License](https://choosealicense.com/licenses/${data.license.toLowerCase()}/)`
+const licenseSection = function (license) {
+  if (license == 'BSD 3') {
+    return '[BSD 3 License](https://choosealicense.com/licenses/bsd-3-clause/)'
+  }
+  else if (license !== 'none') {
+    return `[${license} License](https://choosealicense.com/licenses/${license.toLowerCase().replace(/\s+/g, "-")}/)`
   }
   else {
-    return `No license`
+    return "No license"
   }
 }
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
+//TODO: Create a function that returns the deployed URL. If there is no deployed URL, return
+//TODO: Create a function that splits the image URL string into separate URLs and add to description section
 
-  ${badge}
+
+// Generate markdown for README
+function generateMarkdown(answers) {
+
+  return `# ${answers.title}
+
+  ${generateBadge(answers.license)}
   
   ## Description
           
-  ${data.description}
+  ${answers.description}
   
   ## Table of Contents
   
@@ -41,28 +49,29 @@ function generateMarkdown(data) {
   * [Questions](#questions)
     
   ## Installation
-  ${data.install}
+  ${answers.install}
   
   ## Usage
-  ${data.usage}
+  ${answers.usage}
   
   ## License
-  ${licenseSection}
+  ${licenseSection(answers.license)}
   
   ## Contributing
-  ${data.contributing}
+  ${answers.contributing}
 
-  Thank you to the following who have already contributed: ${data.contributors}
+  Thank you to the following who have already contributed: ${answers.contributors}
   
   ## Tests
-  ${data.tests}
+  ${answers.tests}
   
   ## Questions
   
   For more information:
-  Visit my GitHub: [https://${data.name}.github.io](https://${data.name}.github.io)
+  Visit my GitHub: [https://${answers.name}.github.io](https://${answers.name}.github.io)
 
-  or Email: ${data.email}`;
+  or Email: ${answers.email}`;
 }
 
 module.exports = generateMarkdown;
+

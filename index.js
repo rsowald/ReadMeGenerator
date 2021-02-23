@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
-const generateMarkdown = require('./utils/generateMarkdown');
+const path = require('path');
+const generatedFunctions = require('./utils/generateMarkdown');
 
 // Array of questions for user input
 askQuestions = async () => {
@@ -32,10 +33,15 @@ askQuestions = async () => {
             message: 'If your project is deployed, what is the URL of the deployed application?'
         },
         {
+            type: 'input',
+            name: 'imgUrl',
+            message: 'If your project has images, what are the URLs of the images (separate with a space)?'
+        },
+        {
             type: 'list',
             name: 'license',
             message: 'What kind of license should your project have?',
-            choices: ['MIT', 'APACHE-2.0', 'GPL-3.0', 'BSD-3-CLAUSE', 'None'],
+            choices: ['MIT', 'APACHE 2.0', 'GPL 3.0', 'BSD 3', 'none'],
             default: 'none'
         },
         {
@@ -72,14 +78,20 @@ askQuestions = async () => {
 writeToFile = async (fileName, data) => {
     const writeFileAsync = util.promisify(fs.writeFile);
 
-    await writeFileAsync(fileName, data);
+    await writeFileAsync(path.join(process.cwd(), fileName), data);
 };
 
 // Function to initialize app
 init = async () => {
     const answers = await askQuestions();
-    const markdown = generateMarkdown(answers);
-    await writeToFile(fileName, markdown);
+    const markdown = generatedFunctions(answers);
+    try {
+        await writeToFile('readMe.md', markdown);
+    }
+    catch (err) {
+        if (err) { throw err };
+    }
 };
+
 
 init();
