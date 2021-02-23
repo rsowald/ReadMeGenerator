@@ -1,4 +1,4 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 const generateBadge = function (license) {
   if (license !== 'none') {
@@ -9,9 +9,9 @@ const generateBadge = function (license) {
   }
 }
 
-// TODO: Create a function that returns the license link
+// Function that returns a link to the appropriate license information
 // If there is no license, return an empty string
-const licenseSection = function (license) {
+const linkLicenseInfo = function (license) {
   if (license == 'BSD 3') {
     return '[BSD 3 License](https://choosealicense.com/licenses/bsd-3-clause/)'
   }
@@ -23,7 +23,16 @@ const licenseSection = function (license) {
   }
 }
 
-//TODO: Create a function that returns the deployed URL. If there is no deployed URL, return
+const renderUrl = function (url) {
+  if (url !== 'none') {
+    return `[Deployed application](${url})`
+  }
+  else {
+    return ""
+  }
+}
+
+
 //TODO: Create a function that splits the image URL string into separate URLs and add to description section
 
 
@@ -35,7 +44,7 @@ function generateMarkdown(answers) {
   ${generateBadge(answers.license)}
   
   ## Description
-          
+  ${renderUrl(answers.url)}
   ${answers.description}
   
   ## Table of Contents
@@ -55,15 +64,15 @@ function generateMarkdown(answers) {
   ${answers.usage}
   
   ## License
-  ${licenseSection(answers.license)}
+  ${linkLicenseInfo(answers.license)}
   
   ## Contributing
-  ${answers.contributing}
+  To contribute to this repo, please ${answers.contributing}
 
   Thank you to the following who have already contributed: ${answers.contributors}
   
   ## Tests
-  ${answers.tests}
+  Run ${answers.tests}
   
   ## Questions
   

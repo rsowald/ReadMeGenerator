@@ -1,3 +1,5 @@
+//list required packages so they can be installed on initialization
+
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
@@ -30,12 +32,14 @@ askQuestions = async () => {
         {
             type: 'input',
             name: 'url',
-            message: 'If your project is deployed, what is the URL of the deployed application?'
+            message: 'If your project is deployed, what is the URL of the deployed application?',
+            default: 'none'
         },
         {
             type: 'input',
             name: 'imgUrl',
-            message: 'If your project has images, what are the URLs of the images (separate with a space)?'
+            message: 'If your project has images, what are the URLs of the images (separate with a space)?',
+            default: 'none'
         },
         {
             type: 'list',
@@ -77,7 +81,7 @@ askQuestions = async () => {
 // Function to write README file
 writeToFile = async (fileName, data) => {
     const writeFileAsync = util.promisify(fs.writeFile);
-
+    //use process.cwd to ensure readme gets saved to current working directory
     await writeFileAsync(path.join(process.cwd(), fileName), data);
 };
 
