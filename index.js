@@ -77,7 +77,7 @@ askQuestions = async () => {
 
 askMultiStepQuestion = async (firstTimeQuestion, followingQuestion) => {
     const answers = [];
-    const firstTime = true;
+    let firstTime = true;
     while (true) {
         const message = firstTime ? firstTimeQuestion : followingQuestion;
 
