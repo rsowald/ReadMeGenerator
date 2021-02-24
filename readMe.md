@@ -20,19 +20,28 @@
   Run npm i
   
   ## Usage
-  1. Clone the repo to local directory  2. open repo in VSCode  3. open integrated terminal to index.js  4. install dependencies  5. run program with node index.js
+  1. Clone the repo to local directory
+  1. open repo in VSCode
+  1. open integrated terminal to index.js
+  1. install dependencies
+  1. run program with node index.js
   
+  ![application image](https://drive.google.com/file/d/1rpaCluw4N-P3UmLHIBtUl5MdG1FaUain/view?usp=sharing)
   
   ## License
   [MIT License](https://choosealicense.com/licenses/mit/)
   
   ## Contributing
-  To contribute to this repo, please 1. Fork the repo  2. Make changes to forked repo  3. Submit pull request to this repo
+  To contribute to this repo:
+  1. Fork the repo
+  1. Make changes to forked repo
+  1. Submit pull request to this repo
+  
 
   Thank you to the following who have already contributed: Renae Sowald
   
   ## Tests
-  Run none
+  no tests
   
   ## Questions
   

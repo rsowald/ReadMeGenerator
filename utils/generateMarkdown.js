@@ -68,7 +68,8 @@ function generateMarkdown(answers) {
   Run ${answers.install}
   
   ## Usage
-  ${answers.usageSteps}
+  ${answers.usageSteps.map(step => `1. ${step}
+  `).join("")}
   ${renderImgUrl(answers.imgUrl)}
   
   ## License
@@ -76,7 +77,8 @@ function generateMarkdown(answers) {
   
   ## Contributing
   To contribute to this repo:
-  ${answers.contributeSteps}
+  ${answers.contributeSteps.map(step => `1. ${step}
+  `).join('')}
 
   Thank you to the following who have already contributed: ${answers.contributors}
   
