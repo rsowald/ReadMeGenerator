@@ -2,10 +2,10 @@
 // If there is no license, return an empty string
 const generateBadge = function (license) {
   if (license !== 'none') {
-    return `![License](https://img.shields.io/badge/license-${license.replace(/\s+/g, "")}-green.svg)`
+    return `![License](https://img.shields.io/badge/license-${license.replace(/\s+/g, "")}-green.svg)`;
   }
   else {
-    return ""
+    return "";
   }
 }
 
@@ -13,28 +13,35 @@ const generateBadge = function (license) {
 // If there is no license, return an empty string
 const linkLicenseInfo = function (license) {
   if (license == 'BSD 3') {
-    return '[BSD 3 License](https://choosealicense.com/licenses/bsd-3-clause/)'
+    return '[BSD 3 License](https://choosealicense.com/licenses/bsd-3-clause/)';
   }
   else if (license !== 'none') {
-    return `[${license} License](https://choosealicense.com/licenses/${license.toLowerCase().replace(/\s+/g, "-")}/)`
+    return `[${license} License](https://choosealicense.com/licenses/${license.toLowerCase().replace(/\s+/g, "-")}/)`;
   }
   else {
-    return "No license"
+    return "No license";
   }
 }
-
+//Function checks if there is a deployed url included and adds it to the description section
 const renderUrl = function (url) {
   if (url !== 'none') {
-    return `[Deployed application](${url})`
+    return `[Deployed application](${url})`;
   }
   else {
-    return ""
+    return "";
   }
 }
-
-
-//TODO: Create a function that splits the image URL string into separate URLs and add to description section
-
+//Function that splits the image URL string into separate URLs and adds to usage section
+const renderImgUrl = function (imgUrl) {
+  if (imgUrl !== 'none') {
+    const imgArr = imgUrl.split(" ");
+    const images = imgArr.map(imgUrl => `![application image](${imgUrl})`).join('\n');
+    return images;
+  }
+  else {
+    return "";
+  }
+}
 
 // Generate markdown for README
 function generateMarkdown(answers) {
@@ -58,10 +65,11 @@ function generateMarkdown(answers) {
   * [Questions](#questions)
     
   ## Installation
-  ${answers.install}
+  Run ${answers.install}
   
   ## Usage
   ${answers.usage}
+  ${renderImgUrl(answers.imgUrl)}
   
   ## License
   ${linkLicenseInfo(answers.license)}
