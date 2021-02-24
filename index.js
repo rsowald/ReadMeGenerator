@@ -8,7 +8,7 @@ const generatedFunctions = require('./utils/generateMarkdown');
 
 // Array of questions for user input
 askQuestions = async () => {
-    return await inquirer.prompt([
+    const answers = await inquirer.prompt([
         {
             type: 'input',
             name: 'name',
@@ -62,21 +62,43 @@ askQuestions = async () => {
         },
         {
             type: 'input',
-            name: 'usage',
-            message: 'What steps should the user take to use the repo?'
-        },
-        {
-            type: 'input',
-            name: 'contributing',
-            message: 'How should the user contribute to the repo?'
-        },
-        {
-            type: 'input',
             name: 'contributors',
             message: 'Who has contributed to the repo?'
         }
     ]);
+    answers.usageSteps = await askMultiStepQuestion(
+        'What is the first step the user should take to use the repo?',
+        'What is the next step the user should take to use the repo? (leave blank if there are no more steps)');
+    answers.contributeSteps = await askMultiStepQuestion(
+        'What is the first step the user should take to contribute to the repo?',
+        'What is the next step the user should take to contribute to the repo (leave blank if there are no more steps)?');
+    return answers;
 };
+
+askMultiStepQuestion = async (firstTimeQuestion, followingQuestion) => {
+    const answers = [];
+    const firstTime = true;
+    while (true) {
+        const message = firstTime ? firstTimeQuestion : followingQuestion;
+
+        const answer = await inquirer.prompt([
+
+            {
+                type: 'input',
+                name: 'value',
+                message
+            }
+        ]);
+        firstTime = false;
+        if (!answer.value) {
+            break;
+        }
+        answers.push(answer.value);
+    };
+    return answers;
+};
+
+
 
 // Function to write README file
 writeToFile = async (fileName, data) => {

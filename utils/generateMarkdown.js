@@ -80,7 +80,7 @@ function generateMarkdown(answers) {
   Thank you to the following who have already contributed: ${answers.contributors}
   
   ## Tests
-  Run ${answers.tests}
+  ${answers.tests}
   
   ## Questions
   
