@@ -6,6 +6,8 @@
   
   This command line application generates a professional ReadMe by prompting the user for all of the information that comprises the content of a ReadMe then inputs the data into a professional-looking template and saves the ReadMe to the current working directory. It is run in Node.js and uses the inquirer npm package to prompt the user for content then the file system package creates the file and writes the generated data to it.
   
+  ![application image](/assets/screenshot.jpg)
+  
   ## Table of Contents
   
   * [Description](#description)
@@ -26,7 +28,8 @@
   1. install dependencies
   1. run program with node index.js
   
-  ![application image](/assets/screenshot.jpg)
+  
+  [Demo video](https://drive.google.com/file/d/1_gVJgmm09vTcvyOfCkHw9Qw8s57z2YE8/view)
   
   ## License
   [MIT License](https://choosealicense.com/licenses/mit/)
