@@ -68,14 +68,15 @@ function generateMarkdown(answers) {
   Run ${answers.install}
   
   ## Usage
-  ${answers.usage}
+  ${answers.usageSteps}
   ${renderImgUrl(answers.imgUrl)}
   
   ## License
   ${linkLicenseInfo(answers.license)}
   
   ## Contributing
-  To contribute to this repo, please ${answers.contributing}
+  To contribute to this repo:
+  ${answers.contributeSteps}
 
   Thank you to the following who have already contributed: ${answers.contributors}
   
