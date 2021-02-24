@@ -26,7 +26,7 @@
   1. install dependencies
   1. run program with node index.js
   
-  ![application image](https://drive.google.com/file/d/1rpaCluw4N-P3UmLHIBtUl5MdG1FaUain/view?usp=sharing)
+  ![application image](/assets/screenshot.jpg)
   
   ## License
   [MIT License](https://choosealicense.com/licenses/mit/)
